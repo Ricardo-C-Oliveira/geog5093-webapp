@@ -12,14 +12,26 @@ var map = L.map('map', {
     layers: [light]
 });
 
-$.getJSON("http://127.0.0.1:5000/data", function(data) {
-    console.log(data)    
+var campGroundIcon = L.icon({
+    iconUrl: './campground-icon.svg',
+    iconSize: [20, 20]
+})
 
-    var entry = data.feed.entry;
-
-    for (i=0; i < entry.length; i++){
-        L.marker([entry[i].gsx$latitude.$t, entry[i].gsx$longitude.$t]).bindPopup("<b>"+entry[i].gsx$businessname.$t+"</b><br><br>"+entry[i].gsx$typeofvenue.$t+"<br>"+entry[i].gsx$address.$t+"<br>"+entry[i].gsx$phonenumber.$t).addTo(map);
-        console.log(entry[i])
+$.ajax({
+    url: "http://127.0.0.1:5000/data",
+    type: "get",
+    success: function (data) {
+        console.log(data)
+        L.geoJson(data, {
+            
+            pointToLayer: function (feature, latlng) {
+                var marker = L.marker(latlng, { icon: campGroundIcon });
+                marker.bindPopup('Name: ' + feature.properties.spot_name + '<br/>' + 'Best time to go: ' +feature.properties.best_time);
+                return marker;
+            }
+        }).addTo(map);
+    },
+    error: function(err){
+        console.log(err)
     }
-
 });

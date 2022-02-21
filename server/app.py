@@ -1,10 +1,11 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 
 import json
 
 app = Flask(__name__)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def ping():
@@ -13,7 +14,7 @@ def ping():
 @app.route("/data")
 def data():
     with open('./camping_data.geojson') as data:
-        return json.load(data)
+        response = jsonify(json.load(data))
+        # response.headers.add('Access-Control-Allow-Origin', '*')
+        return response
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug = False)
