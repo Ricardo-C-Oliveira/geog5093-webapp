@@ -14,3 +14,6 @@ def ping():
 def data():
     with open('./camping_data.geojson') as data:
         return json.load(data)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug = False)
