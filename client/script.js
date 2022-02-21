@@ -18,8 +18,9 @@ var campGroundIcon = L.icon({
 })
 
 $.ajax({
-    url: "http://127.0.0.1:5000/data",
+    url: "http://localhost:3000/data",
     type: "get",
+    crossDomain: true,
     success: function (data) {
         console.log(data)
         L.geoJson(data, {

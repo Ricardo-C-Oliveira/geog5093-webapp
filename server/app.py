@@ -15,6 +15,9 @@ def ping():
 def data():
     with open('./camping_data.geojson') as data:
         response = jsonify(json.load(data))
-        # response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers.add('Access-Control-Allow-Origin', '*')
         return response
 
+if __name__ == '__main__':
+    print('running api')
+    app.run(host='0.0.0.0', port=3000)
