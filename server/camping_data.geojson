@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "spot_id": 1,
+        "spot_name": "Kebler Pass",
+        "note": "Lots of aspens!",
+        "best_time": "Fall/Summer",
+        "county": "Gunnison County",
+        "forest": "Gunnison NF",
+        "time_from_denver": "5hr"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -107.166201,
+          38.866390
+        ]
+      }
+    }
+  ]
+}
