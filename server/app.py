@@ -9,7 +9,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def ping():
-    return "<p>Welcome to the Out Camping API!</p>"
+    return "<h1>Welcome to the Out Camping API!</h1>"
 
 @app.route("/data")
 def data():
